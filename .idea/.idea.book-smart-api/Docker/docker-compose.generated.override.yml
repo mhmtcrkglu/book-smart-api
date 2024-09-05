@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.4"
+services:
+  book-smart.api:
+    build:
+      context: "/Users/mehmet/Desktop/case/enpal/book-smart-api"
+      dockerfile: "book-smart.api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/book-smart.api.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "book-smart.api:dev"
+    ports: []
+    volumes:
+    - "/Users/mehmet/.nuget/packages:/home/app/.nuget/packages"
+    - "/Users/mehmet/Desktop/case/enpal/book-smart-api/book-smart.api:/app:rw"
+    - "/Users/mehmet/Desktop/case/enpal/book-smart-api:/src:rw"
+    working_dir: "/app"

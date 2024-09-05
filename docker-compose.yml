@@ -1,0 +1,29 @@
+﻿version: '3.4'
+
+services:
+  book-smart.api:
+    image: book-smart.api
+    build:
+      context: .
+      dockerfile: book-smart.api/Dockerfile
+    ports:
+      - "3000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - db
+
+  db:
+    image: "postgres:15-alpine"
+    environment:
+      POSTGRES_USER: "postgress"
+      POSTGRES_PASSWORD: "mypassword123!"
+      POSTGRES_DB: "coding-challenge"
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+volumes:
+  dbdata:
